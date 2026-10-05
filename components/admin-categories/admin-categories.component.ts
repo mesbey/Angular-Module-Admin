@@ -23,7 +23,8 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
     id: null,
     name: null,
     slug: null,
-    description: null
+    description: null,
+    translations: []
   };
 
   get isPageReady() {
@@ -50,6 +51,22 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
       name: f.value.name,
       slug: f.value.slug,
       description: f.value.description,
+      translations: [
+        {
+          locale: 'tr',
+          name: f.value.tr_name,
+          slug: f.value.tr_slug,
+          description: f.value.tr_description,
+          published: !!f.value.tr_published
+        },
+        {
+          locale: 'en',
+          name: f.value.en_name,
+          slug: f.value.en_slug,
+          description: f.value.en_description,
+          published: !!f.value.en_published
+        }
+      ].filter(translation => translation.name && translation.slug)
     };
 
     let rq1;
@@ -84,6 +101,17 @@ export class AdminCategoriesComponent implements OnInit, OnDestroy {
   }
 
   selectCategory(category: any) {
-    this.edit_category = category;
+    this.edit_category = JSON.parse(JSON.stringify(category));
+    this.edit_category.translations = this.edit_category.translations || [];
+  }
+
+  translation(locale: string): any {
+    if (!this.edit_category) { return {}; }
+    let translation = this.edit_category.translations.find(item => item.locale === locale);
+    if (!translation) {
+      translation = { locale, name: '', slug: '', description: '', published: false };
+      this.edit_category.translations.push(translation);
+    }
+    return translation;
   }
 }

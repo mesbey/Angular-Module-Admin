@@ -29,6 +29,18 @@
                 autofocus>
             </mat-form-field>
 
+            <h3>Türkçe yayın bilgileri</h3>
+            <mat-form-field class="form-group"><input matInput placeholder="Türkçe isim" [ngModel]="translation('tr').name" name="tr_name"></mat-form-field>
+            <mat-form-field class="form-group"><input matInput placeholder="Türkçe slug" [ngModel]="translation('tr').slug" name="tr_slug"></mat-form-field>
+            <mat-form-field class="form-group"><textarea matInput placeholder="Türkçe açıklama" [ngModel]="translation('tr').description" name="tr_description"></textarea></mat-form-field>
+            <mat-checkbox [ngModel]="translation('tr').published" name="tr_published">Türkçe yayında</mat-checkbox>
+
+            <h3>İngilizce hazırlık bilgileri</h3>
+            <mat-form-field class="form-group"><input matInput placeholder="English name" [ngModel]="translation('en').name" name="en_name"></mat-form-field>
+            <mat-form-field class="form-group"><input matInput placeholder="English slug" [ngModel]="translation('en').slug" name="en_slug"></mat-form-field>
+            <mat-form-field class="form-group"><textarea matInput placeholder="English description" [ngModel]="translation('en').description" name="en_description"></textarea></mat-form-field>
+            <mat-checkbox [ngModel]="translation('en').published" name="en_published">English reviewed/published</mat-checkbox>
+
             <mat-form-field class="form-group">
               <input matInput type="text" placeholder="Slug" [ngModel]="edit_category.slug" name="slug" required
                 autofocus>

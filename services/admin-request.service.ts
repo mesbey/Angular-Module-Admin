@@ -116,6 +116,22 @@ export class AdminRequestService extends MainRequestService {
     return this.makeDeleteRequest('core.category.category', `${id}`);
   }
 
+  getAuthors(): Observable<any> {
+    return this.makeGetRequest('core.author.authors');
+  }
+
+  postAuthor(data: any): Observable<any> {
+    return this.makePostRequest('core.author.author', data);
+  }
+
+  putAuthor(id: number, data: any): Observable<any> {
+    return this.makePutRequest('core.author.author', data, `${id}`);
+  }
+
+  deleteAuthor(id: number): Observable<any> {
+    return this.makeDeleteRequest('core.author.author', `${id}`);
+  }
+
   getOptions(): Observable<any> {
     return this.makeGetRequest('core.option.options');
   }

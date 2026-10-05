@@ -11,6 +11,7 @@ import { AdminRolesComponent } from './components/admin-roles/admin-roles.compon
 import { AdminPermissionsComponent } from './components/admin-permissions/admin-permissions.component';
 import { NavigationComponent } from './imports';
 import { SiteOptionsComponent } from './components/site-options/site-options/site-options.component';
+import { AdminAuthorsComponent } from './components/admin-authors/admin-authors.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'admin/menus', component: AdminMenusComponent },
       { path: 'admin/languages', component: AdminLanguagesComponent },
       { path: 'admin/categories', component: AdminCategoriesComponent },
+      { path: 'admin/authors', component: AdminAuthorsComponent },
       { path: 'admin/users', component: AdminUsersComponent },
       { path: 'options', component: SiteOptionsComponent }
     ]

@@ -1,0 +1,33 @@
+<div class="container">
+  <mat-card>
+    <div class="title"><h1 class="is-size-3">Gerçek Yazar Profilleri</h1></div>
+    <div class="columns">
+      <div class="column is-one-third">
+        <aside class="menu"><ul class="menu-list">
+          <li *ngFor="let author of authors" (click)="select(author)">
+            <a>{{author.translations[0]?.name || 'İsimsiz yazar'}}</a>
+          </li>
+        </ul></aside>
+        <button mat-raised-button type="button" color="primary" (click)="create()">Yazar Ekle</button>
+      </div>
+      <div class="column" *ngIf="selected">
+        <form #form="ngForm" (ngSubmit)="save(form)">
+          <mat-checkbox [(ngModel)]="selected.active" name="active">Aktif</mat-checkbox>
+          <mat-form-field class="full-width"><input matInput placeholder="Profil görsel kimliği" [(ngModel)]="selected.profile_image" name="profile_image"></mat-form-field>
+          <mat-form-field class="full-width"><input matInput placeholder="LinkedIn" [(ngModel)]="selected.linkedin_url" name="linkedin_url"></mat-form-field>
+          <mat-form-field class="full-width"><input matInput placeholder="ERP kişi UUID (opsiyonel)" [(ngModel)]="selected.erp_person_uuid" name="erp_person_uuid"></mat-form-field>
+          <div *ngFor="let translation of selected.translations; let i = index">
+            <mat-form-field class="full-width"><input matInput placeholder="Dil" [(ngModel)]="translation.locale" name="locale_{{i}}" required></mat-form-field>
+            <mat-form-field class="full-width"><input matInput placeholder="Ad Soyad" [(ngModel)]="translation.name" name="name_{{i}}" required></mat-form-field>
+            <mat-form-field class="full-width"><input matInput placeholder="Slug" [(ngModel)]="translation.slug" name="slug_{{i}}" required></mat-form-field>
+            <mat-form-field class="full-width"><input matInput placeholder="Profesyonel unvan" [(ngModel)]="translation.professional_title" name="title_{{i}}"></mat-form-field>
+            <mat-form-field class="full-width"><textarea matInput placeholder="Kısa biyografi" [(ngModel)]="translation.biography" name="bio_{{i}}"></textarea></mat-form-field>
+            <mat-form-field class="full-width"><input matInput placeholder="Uzmanlıklar (virgülle)" [(ngModel)]="translation.expertise" name="expertise_{{i}}"></mat-form-field>
+          </div>
+          <button mat-raised-button color="primary" type="submit">Kaydet</button>
+          <button mat-raised-button color="warn" type="button" *ngIf="selected.id" (click)="remove()">Sil</button>
+        </form>
+      </div>
+    </div>
+  </mat-card>
+</div>
